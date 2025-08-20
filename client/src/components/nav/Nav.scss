@@ -1,0 +1,19 @@
+.nav {
+    display: flex;
+    align-items: center;
+    padding: 20px 40px;
+
+    h4 {
+        margin-right: auto;
+    }
+
+    svg {
+        width: 30px;
+        height: 30px;
+        color: white;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

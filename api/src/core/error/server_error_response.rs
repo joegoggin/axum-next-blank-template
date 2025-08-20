@@ -65,20 +65,6 @@ impl IntoResponse for ServerErrorResponse {
     }
 }
 
-impl From<sqlx::Error> for ServerErrorResponse {
-    fn from(value: sqlx::Error) -> Self {
-        match value {
-            sqlx::Error::RowNotFound => {
-                ServerErrorResponse::new_with_message(StatusCode::NOT_FOUND, "Resource not found.")
-            }
-            e => {
-                let error_message = format!("SQLx: {e}");
-                ServerErrorResponse::new_internal_server_error(error_message)
-            }
-        }
-    }
-}
-
 impl From<uuid::Error> for ServerErrorResponse {
     fn from(value: uuid::Error) -> Self {
         let error_message = format!("Invalid UUID: {}", value);

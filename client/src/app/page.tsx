@@ -1,14 +1,13 @@
-import NotebookList from "@/components/ui/notebook/NotebookList";
+import { Message } from "@/types/Message";
 import { get } from "@/utils/axios";
-import { Notebooks } from "@/types/db/notebook";
 
-const { data } = await get<Notebooks>({ route: "/notebook" });
+const { data } = await get<Message>({ route: "/" });
 
 const HomePage: React.FC = () => {
     return (
         <div>
-            <h1>Notebooks</h1>
-            {data && <NotebookList notebooks={data} />}
+            <h1>Blank Template</h1>
+            {data && <h3>{data.message}</h3>}
         </div>
     );
 };

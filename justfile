@@ -37,10 +37,6 @@ api-add *args:
 api-remove *args:
 	cd api && cargo remove {{args}} 
 
-# database
-db-migrate *args:
-	cd api && sqlx migrate {{args}}
-
 # posting
 posting:
 	posting --collection ./.posting/collection --env ./.posting/.env

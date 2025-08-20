@@ -4,7 +4,7 @@ use std::env;
 
 use super::app::AppResult;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub enum AppEnv {
     Dev,
     Prod,
@@ -27,9 +27,8 @@ impl AppEnv {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Env {
-    pub database_url: String,
     pub app_env: AppEnv,
 }
 
@@ -37,11 +36,9 @@ impl Env {
     pub fn new() -> AppResult<Self> {
         dotenv().ok();
 
-        let database_url = Self::get_var("DATABASE_URL")?;
         let app_env = Self::get_var("APP_ENV")?;
 
         Ok(Self {
-            database_url,
             app_env: AppEnv::from_string(app_env)?,
         })
     }
