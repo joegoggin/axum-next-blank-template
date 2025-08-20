@@ -2,20 +2,21 @@ use axum::{
     Extension, Router,
     http::{HeaderName, Method},
     middleware,
+    routing::get,
 };
-use sqlx::{Pool, Postgres};
 use tower_http::cors::{Any, CorsLayer};
 
-use crate::core::logger::Logger;
-
-use super::{note::NoteRouter, notebook::NotebookRouter};
+use crate::{
+    controllers::message::MessageController,
+    core::{env::Env, logger::Logger},
+};
 
 pub struct MainRouter;
 
-pub type DBExt = Extension<Pool<Postgres>>;
+pub type EvnExt = Extension<Env>;
 
 impl MainRouter {
-    pub fn new(db: Pool<Postgres>) -> Router {
+    pub fn new(env: Env) -> Router {
         let cors = CorsLayer::new()
             .allow_methods([Method::POST, Method::GET, Method::PUT, Method::DELETE])
             .allow_origin(Any)
@@ -25,9 +26,8 @@ impl MainRouter {
             ]);
 
         Router::new()
-            .nest("/note", NoteRouter::new())
-            .nest("/notebook", NotebookRouter::new())
-            .layer(Extension(db))
+            .route("/", get(MessageController::get_hello_message))
+            .layer(Extension(env))
             .layer(cors)
             .layer(middleware::from_fn(Logger::log_request_and_response))
     }

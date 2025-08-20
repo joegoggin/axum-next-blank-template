@@ -12,7 +12,6 @@ export const useCssVar = (
 
     useEffect(() => {
         const updateValue = () => {
-            console.log("this ran!");
             const newRootStyles = getComputedStyle(document.documentElement);
             const value = newRootStyles.getPropertyValue(cssVarName).trim();
 

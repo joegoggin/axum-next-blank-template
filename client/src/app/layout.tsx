@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { Roboto, Rubik } from "next/font/google";
 import "@/sass/index.scss";
-import Nav from "@/components/ui/nav/Nav";
+import Nav from "@/components/nav/Nav";
 import "./Layout.scss";
 
 type RootLayoutProps = {
