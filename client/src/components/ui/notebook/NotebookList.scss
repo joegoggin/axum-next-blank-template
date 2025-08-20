@@ -1,0 +1,16 @@
+.notebooks {
+    &__notebook {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+
+        svg {
+            fill: --text-color;
+        }
+
+        h3 {
+            margin-right: 15px;
+        }
+    }
+}

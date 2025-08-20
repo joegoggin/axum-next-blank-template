@@ -1,0 +1,5 @@
+**/entity/src
+target
+.env
+*.env
+.DS_Store

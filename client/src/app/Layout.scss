@@ -1,0 +1,11 @@
+@use "@/sass/colors" as colors;
+
+.layout {
+    h1 {
+        margin-bottom: 20px;
+    }
+
+    &__content {
+        padding: 10px 40px;
+    }
+}
